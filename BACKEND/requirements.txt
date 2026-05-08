@@ -1,0 +1,15 @@
+fastapi
+scikit-learn
+joblib
+sqlalchemy 
+psycopg2
+uvicorn
+pydantic 
+python-dotenv
+pandas
+xgboost
+python-jose[cryptography]
+bcrypt==3.2.2 
+python-multipart
+passlib[bcrypt]
+psycopg2-binary
