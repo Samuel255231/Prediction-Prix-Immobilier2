@@ -1,0 +1,10 @@
+/FRONTEND/node_modules/
+/FRONTEND/.env
+
+/backend/migrations/
+/backend/__pycache__/
+/backend/venv/
+/backend/.env
+/backend/database.sql
+
+architecture.txt
