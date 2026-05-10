@@ -3,7 +3,7 @@
 
 /backend/migrations/
 /backend/__pycache__/
-/backend/venv/
+/backend/mon_env/
 /backend/.env
 /backend/database.sql
 
