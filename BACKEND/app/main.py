@@ -8,6 +8,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
+
 # CORS
 app.add_middleware(
     CORSMiddleware,
@@ -15,7 +16,8 @@ app.add_middleware(
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:3000",
-        "https://prediction-immobilier.onrender.com"
+        "https://prediction-immobilier.onrender.com",
+        "https://predict-price-house.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
