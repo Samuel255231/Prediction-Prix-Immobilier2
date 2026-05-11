@@ -17,6 +17,7 @@ export const login = async (username, password) => {
     if (response.data.access_token) {
         localStorage.setItem('token', response.data.access_token);
         localStorage.setItem('username', username);
+        localStorage.setItem('role',response.data.role);
     }
     return response.data;
 };
@@ -24,10 +25,15 @@ export const login = async (username, password) => {
 export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('role');
 };
 
 export const getCurrentUser = () => {
-    return localStorage.getItem('username');
+    return {
+        username: localStorage.getItem('username'),
+        role: localStorage.getItem('role'),
+    };
+
 };
 
 export const isAuthenticated = () => {

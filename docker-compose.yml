@@ -7,6 +7,11 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 2121
       POSTGRES_DB: immobilier_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -19,13 +24,14 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+       db:
+        condition: service_healthy
 
   frontend:
     build:
       context: ./frontend
       args:
-        VITE_API_URL: http://localhost:8000
+        VITE_API_URL: http://127.0.0.1:8000
     container_name: immo_frontend
     restart: unless-stopped
     ports:

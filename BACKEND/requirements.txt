@@ -12,3 +12,5 @@ bcrypt==3.2.2
 python-multipart
 passlib[bcrypt]
 psycopg2-binary
+aiosmtplib
+email-validator

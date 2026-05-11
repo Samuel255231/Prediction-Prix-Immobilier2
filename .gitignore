@@ -1,10 +1,15 @@
 /FRONTEND/node_modules/
 /FRONTEND/.env
+/FRONTEND/dist
 
-/backend/migrations/
-/backend/__pycache__/
-/backend/mon_env/
-/backend/.env
-/backend/database.sql
+/BACKEND/__pycache__
+/BACKEND/.env
+/BACKEND/database.sql
+/BACKEND/.venv
+/BACKEND/mon_venv
+*.pyc
 
-architecture.txt
+postgres_data
+
+.DS_Store
+Thumbs.db

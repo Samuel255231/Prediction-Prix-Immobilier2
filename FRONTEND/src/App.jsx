@@ -8,6 +8,7 @@ import History from './pages/History';
 import Performance from './pages/Performance';
 import PrivateRoute from './components/PrivateRoute';
 
+
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
             <Route path="/history" element={<PrivateRoute><History /></PrivateRoute>} />
             <Route path="/performance" element={<PrivateRoute><Performance /></PrivateRoute>} />
+
         </Routes>
     );
 }
