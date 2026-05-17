@@ -1,198 +1,281 @@
-# Prédiction de Prix Immobilier
+# 🏠 Prédiction de Prix Immobilier
 
-Application web complète permettant de prédire le prix d'un bien immobilier à Madagascar en utilisant l'intelligence artificielle (XGBoost).
+Application web complète permettant de prédire le prix d’un bien immobilier à Madagascar grâce à l’intelligence artificielle (Machine Learning - XGBoost).
 
-## Fonctionnalités
+---
 
-- **Authentification** - Inscription et connexion avec JWT
-- **Prédiction de prix** - Estimation précise basée sur les caractéristiques du bien
-- **Historique** - Consultation des prédictions passées avec filtres
-- **Performance du modèle** - Visualisation des métriques ML
+# 🚀 Fonctionnalités
 
-## Stack Technique
+* 🔐 Authentification sécurisée avec JWT
+* 📊 Prédiction de prix immobilier
+* 🧾 Historique des prédictions par utilisateur
+* 📈 Visualisation des performances du modèle
+* 🐳 Conteneurisation avec Docker
+* 🌐 API REST avec documentation Swagger
 
-| Couche | Technologie |
-|-------|-------------|
-| Frontend | React + Vite |
-| Backend | FastAPI |
-| Base de données | PostgreSQL |
-| ML | XGBoost + Scikit-learn |
-| Auth | JWT + bcrypt |
+---
 
-## Architecture
+# 🛠️ Stack Technique
 
-## BACKEND (FastAPI + model XGBoost)
-```
+| Couche           | Technologie            |
+| ---------------- | ---------------------- |
+| Frontend         | React + Vite           |
+| Backend          | FastAPI                |
+| Base de données  | PostgreSQL             |
+| Machine Learning | XGBoost + Scikit-learn |
+| Authentification | JWT + bcrypt           |
+| Conteneurisation | Docker                 |
+
+---
+
+# 📁 Architecture du Projet
+
+## BACKEND (FastAPI + Machine Learning)
+
+```bash
 BACKEND/
-├── .env                      # Variables d'environnement
-├── requirements.txt           # Dependencies Python
-├── database.sql              # Script SQL (creation tables)
-├── README.md                # Documentation backend
-├── main.py                 # Point d'entree FastAPI
+├── .env                         # Variables d'environnement
+├── requirements.txt             # Dépendances Python
+├── Dockerfile                   # Configuration Docker backend
+├── README.md                    # Documentation backend
 │
-├── app/                    # Application principale
+├── app/
 │   ├── __init__.py
-│   ├── main.py             # Application FastAPI
+│   ├── main.py                  # Point d'entrée FastAPI
 │   │
-│   ├── api/               # Routes API
+│   ├── api/
 │   │   ├── __init__.py
-│   │   ├── router.py         # Router principal
-│   │   ├── deps.py           # Dependencies
+│   │   ├── router.py            # Router principal
+│   │   ├── deps.py              # Dépendances JWT
+│   │   │
 │   │   └── routes/
-│   │       ├── __init__.py
-│   │       ├── auth.py         # Authentification
-│   │       ├── health.py      # Health check
-│   │       ├── history.py      # Historique predictions
-│   │       ├── performance.py # Performance modele
-│   │       └── predict.py     # Prediction
+│   │       ├── auth.py
+│   │       ├── health.py
+│   │       ├── history.py
+│   │       ├── performance.py
+│   │       └── predict.py
 │   │
-│   ├── core/              # Configuration core
-│   │   ├── __init__.py
-│   │   ├── config.py        # Configuration
-│   │   ├── database.py    # Base de donnees
-│   │   └── security.py   # Securite (JWT)
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   └── security.py
 │   │
-│   ├── models/            # Models ML
-│   │   ├── __init__.py
-│   │   ├── user_model.py          # Modele utilisateur
-│   │   └── prediction_model.py   # Modele prediction (XGBoost)
+│   ├── middlewares/
+│   │   └── logging_middleware.py
 │   │
-│   ├── schemas/           # Schemas Pydantic
-│   │   ├── __init__.py
-│   │   ├── auth_schema.py      # Schemas auth
-│   │   ├── history_schema.py   # Schemas historique
-│   │   ├── input_schema.py   # Schemas entree
-│   │   └── output_schema.py  # Schemas sortie
+│   ├── models/
+│   │   ├── user_model.py
+│   │   └── prediction_model.py
 │   │
-│   └── services/         # Logique metier
-│       ├── __init__.py
-│       ├── auth_service.py          # Service auth
-│       ├── evaluation_service.py # Evaluation modele
-│       ├── history_service.py # Service historique
-│       ├── prediction_service.py # Service prediction
-│       └── preprocessing_service.py # Preprocessing donnees
+│   ├── schemas/
+│   │   ├── auth_schema.py
+│   │   ├── history_schema.py
+│   │   ├── input_schema.py
+│   │   └── output_schema.py
+│   │
+│   ├── services/
+│   │   ├── auth_service.py
+│   │   ├── evaluation_service.py
+│   │   ├── history_service.py
+│   │   ├── prediction_service.py
+│   │   └── preprocessing_service.py
+│   │
+│   └── tests/
+│       ├── test_auth.py
+│       ├── test_predict.py
+│       └── test_history.py
 │
-└── models/                 # Modeles sauvegardes
-    ├── best_model_XGboost.pkl    # Modele XGBoost
-    └── metrics.pkl             # Metriques
+└── models/
+    ├── best_model_XGboost.pkl
+    └── metrics.pkl
 ```
+
+---
 
 ## FRONTEND (React + Vite)
-```
+
+```bash
 FRONTEND/
-├── .env                      # Variables d'environnement
-├── package.json              # Dependencies npm
-├── package-lock.json        # Dependencies verouillees
-├── vite.config.js           # Configuration Vite
-├── index.html               # HTML principal
-├── eslint.config.js         # Configuration ESLint
-├── README.md               # Documentation frontend
+├── .env
+├── package.json
+├── package-lock.json
+├── vite.config.js
+├── Dockerfile                   # Configuration Docker frontend
+├── nginx.conf                   # Configuration Nginx
+├── index.html
+├── eslint.config.js
+├── README.md
 │
-└── src/                   # Code source
-    ├── main.jsx            # Point d'entree React
-    ├── App.jsx             # Composant principal
-    ├── App.css            # Styles App
-    ├── index.css         # Styles globaux
+└── src/
+    ├── main.jsx
+    ├── App.jsx
+    ├── App.css
+    ├── index.css
     │
-    ├── api/              # Configuration API
-    │   └── api.js       # Client HTTP
+    ├── api/
+    │   └── api.js
     │
-    ├── components/       # Composants React
-    │   ├── HistoryTable.jsx     # Tableau historique
-    │   ├── MetricCard.jsx       # Carte metrique
-    │   ├── Navbar.jsx          # Navbar principale
-    │   ├── Navbar_home.jsx      # Navbar page Home
-    │   ├── PredictionForm.jsx   # Formulaire prediction
-    │   ├── PrivateRoute.jsx     # Route protegee
-    │   └── ResultCard.jsx      # Carte resultat
+    ├── components/
+    │   ├── HistoryTable.jsx
+    │   ├── MetricCard.jsx
+    │   ├── Navbar.jsx
+    │   ├── Navbar_home.jsx
+    │   ├── PredictionForm.jsx
+    │   ├── PrivateRoute.jsx
+    │   └── ResultCard.jsx
     │
-    ├── pages/           # Pages
-    │   ├── Dashboard.jsx      # Tableau de bord
-    │   ├── History.jsx         # Historique
-    │   ├── Home.jsx            # Page d'accueil
-    │   ├── Login.jsx           # Connexion
-    │   ├── Performance.jsx    # Performance
-    │   └── Register.jsx       # Inscription
+    ├── pages/
+    │   ├── Dashboard.jsx
+    │   ├── History.jsx
+    │   ├── Home.jsx
+    │   ├── Login.jsx
+    │   ├── Performance.jsx
+    │   └── Register.jsx
     │
-    └── services/        # Services API
-        ├── authService.js        # Authentification
-        ├── historyService.js     # Historique
-        ├── performanceService.js # Performance
-        └── predictionService.js  # Prediction
+    └── services/
+        ├── authService.js
+        ├── historyService.js
+        ├── performanceService.js
+        └── predictionService.js
 ```
 
-## Fichiers de Configuration
-```
-Racine:
-  .gitignore           # Git ignore (/FRONTEND/node_modules/, /FRONTEND/.env, /backend/venv/, /backend/.env, /backend/database.sql)
+---
 
-BACKEND:
-  BACKEND/.env         # DATABASE_URL, SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES.
-
-FRONTEND:
-  FRONTEND/.env       # VITE_API_URL
-```
-
-## Installation
-
-### Backend
+# 🐳 Docker Architecture
 
 ```bash
-cd BACKEND
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
+Projet/
+├── BACKEND/
+├── FRONTEND/
+└── docker-compose.yml
 ```
 
-Configurer le fichier `.env`:
-```
-DATABASE_URL=postgresql://postgres:motdepasse@localhost:5432/prediction_db
-SECRET_KEY=votre_cle_secrete
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-```
+---
 
-Lancer le serveur:
-```bash
-uvicorn app.main:app --reload
-```
+# ⚙️ Installation avec Docker
 
-API disponible sur: https://predict-prix-immobilier.onrender.com
-
-### Frontend
+## 1. Cloner le projet
 
 ```bash
-cd FRONTEND
-npm install
-npm run dev
+git clone https://github.com/OlivAndry/Prediction-Prix-Immobilier2.git
 ```
 
-Application disponible sur: https://predict-prix.onrender.com
+---
 
-## Configuration CORS
+## 2. Aller dans le projet
 
-Le backend est configuré pour accepter les requêtes depuis:
-- http://localhost:5173 (Vite)
-- http://localhost:3000
-- https://predict-prix.onrender.com
+```bash
+cd Prediction-Prix-Immobilier2
+```
 
-## Modèle ML
+---
 
-- **Algorithm**: XGBoost
-- **Features**: superficie, chambres, étage, accès route, eau/électricité, parking, année construction, localisation, type connexion, type sol, état maison
-- **Métriques**:
-  - R² Score: 0.9994
-  - RMSE: 2.64
-  - MSE: 6.9953
-  - MAE: 1.7205
+## 3. Lancer les conteneurs Docker
 
-## API Endpoints
+```bash
+docker-compose up --build
+```
 
-| Méthode | Route | Description |
-|---------|-------|-------------|
-| POST | /auth/register | Inscription |
-| POST | /auth/login | Connexion |
-| GET | /predict | Prédiction de prix |
-| GET | /history | Historique des prédictions |
-| GET | /perf | Performance du modèle |
+---
 
+## 4. Lancer en arrière-plan
+
+```bash
+docker-compose up -d
+```
+
+---
+
+## 5. Arrêter les conteneurs
+
+```bash
+docker-compose down
+```
+
+---
+
+# 🌐 Accès Application
+
+| Service      | URL                        |
+| ------------ | -------------------------- |
+| Frontend     | http://localhost:3000      |
+| Backend API  | http://localhost:8000      |
+| Swagger Docs | http://localhost:8000/docs |
+| PostgreSQL   | localhost:5432             |
+
+---
+
+# 🔐 Authentification
+
+## Register
+
+```http
+POST /auth/register
+```
+
+## Login
+
+```http
+POST /auth/login
+```
+
+Retourne un token JWT :
+
+```http
+Authorization: Bearer <token>
+```
+
+---
+
+# 🤖 Modèle Machine Learning
+
+* Algorithme : XGBoost
+* Librairies : Scikit-learn, Pandas, NumPy
+* Features utilisées :
+
+  * Superficie
+  * Nombre de chambres
+  * Nombre d'étages
+  * Parking
+  * Eau / Électricité
+  * Accès route
+  * Année de construction
+  * Localisation
+  * Type de maison
+  * État du bien
+
+---
+
+# 📈 Performance du Modèle
+
+| Métrique | Valeur |
+| -------- | ------ |
+| R² Score | 0.9994 |
+| RMSE     | 2.64   |
+| MSE      | 6.9953 |
+| MAE      | 1.7205 |
+
+---
+
+# 🌐 API Endpoints
+
+| Méthode | Endpoint       | Description            |
+| ------- | -------------- | ---------------------- |
+| POST    | /auth/register | Inscription            |
+| POST    | /auth/login    | Connexion              |
+| POST    | /predict       | Prédiction de prix     |
+| GET     | /history       | Historique utilisateur |
+| GET     | /perf          | Performance du modèle  |
+| GET     | /docs          | Documentation Swagger  |
+
+---
+
+# 🔒 Sécurité
+
+* Hash des mots de passe avec bcrypt
+* Authentification JWT
+* Routes protégées
+* Middleware de logging
+* Gestion des erreurs FastAPI
+
+---
